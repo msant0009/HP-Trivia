@@ -28,19 +28,80 @@ struct ContentView: View {
                         
                         Text("Trivia")
                             .font(.custom(Constants.hpFont, size: 60))
+                            
                     }
+                    .padding(.top, 70)
                     
+                    Spacer()
+                    VStack{
+                        Text("Recent Scores")
+                            .font((.title2))
+                        
+                        Text("33")
+                        Text("27")
+                        Text("15")
                     
+                    }
+                    .font(.title3)
+                    .padding(.horizontal)
+                    .foregroundColor(.white)
+                    .background(.black.opacity(0.7))
+                    .cornerRadius(15)
                     
-                }
+                    Spacer()
+                    
+                    HStack{
+                        Spacer()
+                        
+                        Button{
+                            // show game instructions
+                            
+                        }label: {
+                            Image(systemName: "info.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                                .shadow(radius: 5)
+                        }
+                            
+                            Spacer()
+                            
+                            Button {
+                                
+                                // start new game
+                            
+                            } label: {
+                                Text("Play")
+                                
+                                    .font(.largeTitle)
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 7)
+                                    .padding(.horizontal, 50)
+                                    .background(.brown)
+                                    .cornerRadius(7)
+                                    .shadow(radius: 5)
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.white)
+                                    .shadow(radius: 5)
+                            }
+                            
+                        Spacer()
+                        
+                        } // end hstack
+                    
+                    .frame(width: geo.size.width)
+                    Spacer()
+                    
+                    }// end vstack
                 
-                
-                
-                
-                
-                
-                
-            }
+            }// end zstack
             .frame(width: geo.size.width, height: geo.size.height)
             
             
