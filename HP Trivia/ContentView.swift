@@ -72,18 +72,24 @@ struct ContentView: View {
                     HStack{
                         Spacer()
                         
-                        Button{
-                            // show game instructions
-                            
-                        }label: {
-                            Image(systemName: "info.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .shadow(radius: 5)
+                        VStack{
+                            if animateViewsIn {
+                                Button{
+                                    // show game instructions
+                                    
+                                }label: {
+                                    Image(systemName: "info.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                }
+                                .transition(.offset(x: -geo.size.width/4))
+                            }
                         }
-                            
+                        .animation(.easeOut(duration: 0.7).delay(2.7),value:animateViewsIn)
+                             
                             Spacer()
-                        
+                         
                         VStack{
                             if animateViewsIn {
                                 
@@ -115,15 +121,21 @@ struct ContentView: View {
                          
                             
                             Spacer()
-                            
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "gearshape.fill")
-                                    .font(.largeTitle)
-                                    .foregroundColor(.white)
-                                    .shadow(radius: 5)
+                        VStack{
+                            if animateViewsIn {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "gearshape.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                }
+                                .transition(.offset(x: geo.size.width/4))
                             }
+                        }
+                        .animation(.easeOut(duration: 0.7).delay(2.7),value:animateViewsIn)
+                              
                             
                         Spacer()
                         
