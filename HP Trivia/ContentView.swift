@@ -53,19 +53,27 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
-                        Text("Recent Scores")
-                            .font((.title2))
-                        
-                        Text("33")
-                        Text("27")
-                        Text("15")
-                    
-                    }
-                    .font(.title3)
-                    .padding(.horizontal)
-                    .foregroundColor(.white)
-                    .background(.black.opacity(0.7))
-                    .cornerRadius(15)
+                        if animateViewsIn {
+                            
+                            VStack{
+                                
+                                Text("Recent Scores")
+                                    .font((.title2))
+                                
+                                Text("33")
+                                Text("27")
+                                Text("15")
+                                
+                            }
+                            .font(.title3)
+                            .padding(.horizontal)
+                            .foregroundColor(.white)
+                            .background(.black.opacity(0.7))
+                            .cornerRadius(15)
+                            .transition(.opacity)
+                        }
+                    }  
+                    .animation(.linear(duration: 1).delay(4),value:animateViewsIn)
                     
                     Spacer()
                     
