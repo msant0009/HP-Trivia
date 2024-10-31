@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var audioPlayer: AVAudioPlayer!
     @State private var scalePlayButton = false
     @State private var moveBackgroundImage = false
+    @State private var animateViewsIn = false
     
     var body: some View {
         GeometryReader {geo in
@@ -29,21 +30,28 @@ struct ContentView: View {
                 
                 VStack{
                     VStack{
-                        Image(systemName: "bolt.fill")
-                            .font(.largeTitle)
-                            .imageScale(.large)
-                        
-                        Text("HP")
-                            .font(.custom(Constants.hpFont, size: 70))
-                            .padding(.bottom, -50)
-                        
-                        Text("Trivia")
-                            .font(.custom(Constants.hpFont, size: 60))
-                            
+                        if animateViewsIn {
+                            VStack{
+                                Image(systemName: "bolt.fill")
+                                    .font(.largeTitle)
+                                    .imageScale(.large)
+                                
+                                Text("HP")
+                                    .font(.custom(Constants.hpFont, size: 70))
+                                    .padding(.bottom, -50)
+                                
+                                Text("Trivia")
+                                    .font(.custom(Constants.hpFont, size: 60))
+                                
+                            }
+                            .padding(.top, 70)
+                            .transition(.move(edge: .top))
+                        }
                     }
-                    .padding(.top, 70)
+                    .animation(.easeOut(duration: 0.7).delay(2),value:animateViewsIn)
                     
                     Spacer()
+                    
                     VStack{
                         Text("Recent Scores")
                             .font((.title2))
@@ -117,15 +125,16 @@ struct ContentView: View {
                     Spacer()
                     
                     }// end vstack
-                
+                 
             }// end zstack
             .frame(width: geo.size.width, height: geo.size.height)
-            
-            
+             
+             
         }
         .ignoresSafeArea()
         .onAppear(){
-          //  playAudio()
+            animateViewsIn = true
+            playAudio()
         }
     }
     
@@ -133,7 +142,7 @@ struct ContentView: View {
         let sound = Bundle.main.path(forResource: "magic-in-the-air", ofType: "mp3")
         audioPlayer = try! AVAudioPlayer(contentsOf: URL(filePath: sound!))
         audioPlayer.numberOfLoops = -1
-        audioPlayer.play()
+    //    audioPlayer.play()
         
     }
     
