@@ -27,7 +27,7 @@ struct ContentView: View {
                             moveBackgroundImage.toggle()
                         }
                     }
-                
+                 
                 VStack{
                     VStack{
                         if animateViewsIn {
@@ -83,28 +83,36 @@ struct ContentView: View {
                         }
                             
                             Spacer()
-                            
-                            Button {
+                        
+                        VStack{
+                            if animateViewsIn {
                                 
-                                // start new game
-                            
-                            } label: {
-                                Text("Play")
-                                
-                                    .font(.largeTitle)
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 7)
-                                    .padding(.horizontal, 50)
-                                    .background(.brown)
-                                    .cornerRadius(7)
-                                    .shadow(radius: 5)
-                            }
-                            .scaleEffect(scalePlayButton ? 1.2 : 1)
-                            .onAppear {
-                                withAnimation(.easeInOut(duration: 1.3).repeatForever()){
-                                    scalePlayButton.toggle()
+                                Button {
+                                    
+                                    // start new game
+                                    
+                                } label: {
+                                    Text("Play")
+                                    
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 7)
+                                        .padding(.horizontal, 50)
+                                        .background(.brown)
+                                        .cornerRadius(7)
+                                        .shadow(radius: 5)
                                 }
+                                .scaleEffect(scalePlayButton ? 1.2 : 1)
+                                .onAppear {
+                                    withAnimation(.easeInOut(duration: 1.3).repeatForever()){
+                                        scalePlayButton.toggle()
+                                    }
+                                }
+                                .transition(.offset(y: geo.size.height/3))
                             }
+                        }
+                        .animation(.easeOut(duration: 0.7).delay(2),value:animateViewsIn)
+                         
                             
                             Spacer()
                             
