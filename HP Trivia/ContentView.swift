@@ -93,6 +93,9 @@ struct ContentView: View {
                                         .shadow(radius: 5)
                                 }
                                 .transition(.offset(x: -geo.size.width/4))
+                                .sheet(isPresented: $showInstructions) {
+                                    Instructions()
+                                }
                             }
                         }
                         .animation(.easeOut(duration: 0.7).delay(2.7),value:animateViewsIn)
