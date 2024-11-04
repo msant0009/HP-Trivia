@@ -10,6 +10,7 @@ import SwiftUI
 
 struct GamePlay: View {
     @State private var animateViewsIn = false
+    @State private var tappedCorrectAnswer = false
     
     var body: some View {
         GeometryReader {geo in
@@ -121,14 +122,26 @@ struct GamePlay: View {
                 VStack{
                     Spacer()
                     
-                    Text("5")
-                        .font(.largeTitle)
-                        .padding(.top, 50)
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Text("5")
+                                .font(.largeTitle)
+                                .padding(.top, 50)
+                                .transition(.offset(y: -geo.size.height/4))
+                        }
+                    }
+                    .animation(.easeInOut(duration: 1).delay(2),value: tappedCorrectAnswer)
                     
                     Spacer()
-                    
-                    Text("Brilliant!")
-                        .font(.custom(Constants.hpFont, size: 100))
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Text("Brilliant!")
+                                .font(.custom(Constants.hpFont, size: 100))
+                                .transition(.scale.combined(with:.offset(y: -geo.size.height/2)))
+                                
+                        }
+                    }
+                    .animation(.easeInOut(duration: 1).delay(1),value:tappedCorrectAnswer)
                     
                     Spacer()
                     
@@ -146,12 +159,18 @@ struct GamePlay: View {
                     }
                     
                     // MARK: Reset level for next question
-                    Button("Next Level>"){
-                        // add reset level for next question here
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Button("Next Level>"){
+                                // add reset level for next question here
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.blue.opacity(0.5))
+                            .font(.largeTitle)
+                            .transition(.offset(y: geo.size.height/3))
+                        }
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.blue.opacity(0.5))
-                    .font(.largeTitle)
+                    .animation(.easeInOut(duration: 2.7).delay(2.7),value:tappedCorrectAnswer)
                     
                     Group{
                         Spacer()
@@ -169,12 +188,17 @@ struct GamePlay: View {
             
         }
         .ignoresSafeArea()
+        
+        // MARK: onappear
         .onAppear(){
          //   animateViewsIn = true
+            tappedCorrectAnswer = true
         }
     }
 }
 
 #Preview {
-    GamePlay()
+    VStack{
+        GamePlay()
+    }
 }
