@@ -116,6 +116,53 @@ struct GamePlay: View {
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .foregroundColor(.white)
+                
+                // MARK: Celebration
+                VStack{
+                    Spacer()
+                    
+                    Text("5")
+                        .font(.largeTitle)
+                        .padding(.top, 50)
+                    
+                    Spacer()
+                    
+                    Text("Brilliant!")
+                        .font(.custom(Constants.hpFont, size: 100))
+                    
+                    Spacer()
+                    
+                    Text("Answer 1")
+                        .minimumScaleFactor(0.5)
+                        .multilineTextAlignment(.center)
+                        .padding(10)
+                        .frame(width: geo.size.width/2.15, height: 80)
+                        .background(.green.opacity(0.5))
+                        .cornerRadius(25)
+                        .scaleEffect(2)
+                    Group{
+                        Spacer()
+                        Spacer()
+                    }
+                    
+                    // MARK: Reset level for next question
+                    Button("Next Level>"){
+                        // add reset level for next question here
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.blue.opacity(0.5))
+                    .font(.largeTitle)
+                    
+                    Group{
+                        Spacer()
+                        Spacer()
+                    }
+                    
+                }
+                .foregroundColor(.white)
+                
+                
+                
             }
             .frame(width: geo.size.width, height: geo.size.height)
             
@@ -123,7 +170,7 @@ struct GamePlay: View {
         }
         .ignoresSafeArea()
         .onAppear(){
-            animateViewsIn = true
+         //   animateViewsIn = true
         }
     }
 }
