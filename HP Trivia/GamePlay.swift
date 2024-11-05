@@ -18,6 +18,8 @@ struct GamePlay: View {
     @State private var movePointsToScore = false
     @State private var revealHint = false
     @State private var revealBook = false
+  //  @State private var tappedWrongAnswer = false
+    @State private var wrongAnswersTapped: [Int] = []
     
     let tempAnswers = [true, false,false,false]
     
@@ -161,7 +163,7 @@ struct GamePlay: View {
                                                 .background(.green.opacity(0.5))
                                                 .cornerRadius(25)
                                                 .transition(.scale)
-                                         //       .transition(.asymetric(insertion: .scale, removal: .scale(scale:5).combined(with: .opacity.animation(.easeOut(duration: 0.5)))))
+                                            //    .transition(.asymetric(insertion: .scale, removal: .scale(scale: 5).combined(with: .opacity.animation(.easeOut(duration: 0.5)))))
                                                 .matchedGeometryEffect(id: "answer", in: namespace)
                                                 .onTapGesture {
                                                     withAnimation(.easeOut(duration: 1)) {
@@ -180,9 +182,18 @@ struct GamePlay: View {
                                             .multilineTextAlignment(.center)
                                             .padding(10)
                                             .frame(width: geo.size.width/2.15, height: 80)
-                                            .background(.green.opacity(0.5))
+                                            .background(wrongAnswersTapped.contains(i) ?
+                                                .red.opacity(0.5) :
+                                                .green.opacity(0.5))
                                             .cornerRadius(25)
                                             .transition(.scale)
+                                            .onTapGesture {
+                                                withAnimation(.easeOut(duration: 1)){
+                                                    wrongAnswersTapped.append(i)
+                                                }
+                                            }
+                                            .scaleEffect(wrongAnswersTapped.contains(i) ? 0.8 : 1)
+                                            .disabled(wrongAnswersTapped.contains(i))
                                             
                                     }
                                 }
