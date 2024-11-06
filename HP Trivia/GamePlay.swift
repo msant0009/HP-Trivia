@@ -60,7 +60,7 @@ struct GamePlay: View {
                             
                         }
                     }
-                    .animation(.easeInOut(duration: 2),value:animateViewsIn)
+                    .animation(.easeInOut(duration: animateViewsIn ? 2 : 0),value:animateViewsIn)
                     
                     Spacer()
                     
@@ -105,7 +105,7 @@ struct GamePlay: View {
                             }
                             
                         }
-                        .animation(.easeOut(duration: 1.5).delay(2),value:animateViewsIn)
+                        .animation(.easeOut(duration:animateViewsIn ? 1.5 : 0).delay(animateViewsIn ? 2 : 0),value:animateViewsIn)
                         
                         Spacer()
                         
@@ -149,7 +149,7 @@ struct GamePlay: View {
                                   
                             }
                         }
-                        .animation(.easeOut(duration: 1.5).delay(2),value:animateViewsIn)
+                        .animation(.easeOut(duration: animateViewsIn ? 1.5 : 0).delay(animateViewsIn ? 2 : 0),value:animateViewsIn)
                     }
                     .padding(.bottom)
                     
@@ -178,7 +178,7 @@ struct GamePlay: View {
                                         }
                                     }
                                 }
-                                .animation(.easeOut(duration: 1).delay(1.5),value:animateViewsIn)
+                                .animation(.easeOut(duration: animateViewsIn ? 1 : 0).delay(animateViewsIn ? 1.5 : 0),value:animateViewsIn)
                             }else {
                                 VStack{
                                     if animateViewsIn {
@@ -203,7 +203,7 @@ struct GamePlay: View {
                                             .opacity(tappedCorrectAnswer ? 0.1 : 1)
                                     }
                                 }
-                                .animation(.easeOut(duration: 1).delay(1.5),value:animateViewsIn)
+                                .animation(.easeOut(duration: animateViewsIn ? 1 : 0).delay(animateViewsIn ? 1.5 : 0),value:animateViewsIn)
                             }
                             
                         }
@@ -245,7 +245,7 @@ struct GamePlay: View {
                                 
                         }
                     }
-                    .animation(.easeInOut(duration: 1).delay(1),value:tappedCorrectAnswer)
+                    .animation(.easeInOut(duration: tappedCorrectAnswer ? 1 : 0).delay(tappedCorrectAnswer ? 1 : 0),value:tappedCorrectAnswer)
                     
                     Spacer()
                     if tappedCorrectAnswer{
@@ -294,7 +294,7 @@ struct GamePlay: View {
                             }
                         }
                     }
-                    .animation(.easeInOut(duration: 2.7).delay(2.7),value:tappedCorrectAnswer)
+                    .animation(.easeInOut(duration: tappedCorrectAnswer ? 2.7 : 0).delay(tappedCorrectAnswer ? 2.7 : 0),value:tappedCorrectAnswer)
                     
                     Group{
                         Spacer()
@@ -316,7 +316,7 @@ struct GamePlay: View {
         // MARK: onappear
         .onAppear(){
            animateViewsIn = true
-         //   tappedCorrectAnswer = true
+         
         }
     }
 }
