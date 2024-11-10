@@ -79,7 +79,7 @@ class Game: ObservableObject {
     }
     
     /*
-     enfGame() example:
+     endGame() example:
      recent scores: 33, 27, 15
      new game, new score = 50
      
