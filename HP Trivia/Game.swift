@@ -9,6 +9,10 @@ import Foundation
 
 @MainActor // force to run on main thread
 class Game: ObservableObject {
+    @Published var gameScore = 0
+    @Published var questionScore = 5
+    @Published var recentScores = [0,0,0]
+    
     private var allQuestions: [Question] = []
     private var answeredQuestions: [Int] = []
     
@@ -21,6 +25,13 @@ class Game: ObservableObject {
     
     init(){
         decodeQuestions()
+    }
+    
+    func startGame() {
+        gameScore = 0
+        questionScore = 5
+        answeredQuestions = []
+        
     }
     
     func filterQuestions(to books: [Int]) {
@@ -51,13 +62,31 @@ class Game: ObservableObject {
         
         answers.shuffle()
         
+        questionScore = 5
+        
     }
     
     func correct() {
         answeredQuestions.append(currentQuestion.id)
-        
-        //Todo: update the score
+    
+        gameScore += questionScore
     }
+    
+    func endGame() {
+        recentScores[2] = recentScores[1]
+        recentScores[1] = recentScores[0]
+        recentScores[0] = gameScore
+    }
+    
+    /*
+     enfGame() example:
+     recent scores: 33, 27, 15
+     new game, new score = 50
+     
+     in end game, move 27 to 15 spot, move 33 to 27 spot, move 50 to 33 spot.
+     score = 15 is removed
+     
+     */
     
     private func decodeQuestions() {
         if let url = Bundle.main.url(forResource: "trivia", withExtension: "json"){
