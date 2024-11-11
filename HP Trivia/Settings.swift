@@ -43,13 +43,15 @@ struct Settings: View {
                                     .padding(3)
                                     
                                 }
-                                
-                                .onTapGesture {
-                                    store.books[i] = .inactive
-                                }
                                 .task {
                                     store.books[i] = .active
+                                    store.saveStatus()
                                 }
+                                .onTapGesture {
+                                    store.books[i] = .inactive
+                                    store.saveStatus()
+                                }
+ 
                             } else if store.books[i] == .inactive {
                                 ZStack(alignment: .bottomTrailing){
                                     Image("hp\(i+1)")
@@ -67,6 +69,7 @@ struct Settings: View {
                                 }
                                 .onTapGesture {
                                     store.books[i] = .active
+                                    store.saveStatus()
                                 }
                             } else {
                                 
@@ -109,6 +112,7 @@ struct Settings: View {
                 
                 .doneButton() // see constants file
             }
+            .foregroundColor(.black)
         }
     }
 }

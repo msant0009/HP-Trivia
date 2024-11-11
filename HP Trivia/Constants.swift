@@ -36,3 +36,13 @@ extension Button {
         .foregroundColor(.white)
     }
 }
+
+// from Paul Hudson of Hacking with Swift
+// This is an alternative to using CoreData for small amounts of data
+extension FileManager {
+    static var documentsDirectory: URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        return paths[0]
+    }
+}
